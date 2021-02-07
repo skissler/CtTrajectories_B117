@@ -1,0 +1,12 @@
+
+ggsave(fig_ct_fit_b117, file=paste0(savedir,"ct_fit_b117.pdf"), width=8, height=8)
+ggsave(fig_ct_fit_b117_fulldata, file=paste0(savedir,"ct_fit_b117_fulldata.pdf"), width=8, height=8)
+ggsave(fig_dpmean, file=paste0(savedir,"dp_mean.pdf"), width=8, height=5)
+ggsave(fig_gemlmean, file=paste0(savedir,"geml_mean.pdf"), width=8, height=5)
+ggsave(fig_wpmean, file=paste0(savedir,"wp_mean.pdf"), width=8, height=5)
+ggsave(fig_wrmean, file=paste0(savedir,"wr_mean.pdf"), width=8, height=5)
+ggsave(fig_infdurmean, file=paste0(savedir,"infdur_mean.pdf"), width=8, height=5)
+ggsave(fig_ct_trajectory_inference, file=paste0(savedir,"ct_trajectory_inference.pdf"), width=8, height=5)
+ggsave(fig_ct_trajectory_inference_geml, file=paste0(savedir,"ct_trajectory_inference_geml.pdf"), width=8, height=5)
+ggsave(fig_ct_trajectory_inference_rawb117, file=paste0(savedir,"ct_trajectory_inference_rawb117.pdf"), width=8, height=5)
+ggsave(fig_raw_trajectories, file=paste0(savedir,"raw_trajectories.pdf"), width=8, height=5)
