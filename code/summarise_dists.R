@@ -3,6 +3,9 @@ dist_summary <- shared_params_df %>%
 		peak.ct.WT_mean=mean(global_pars[["lod"]]-dpmeanW),
 		peak.ct.WT_lwr95=quantile(global_pars[["lod"]]-dpmeanW,0.05),
 		peak.ct.WT_upr95=quantile(global_pars[["lod"]]-dpmeanW,0.95),
+		peak.geml.WT_mean=mean(convert_Ct_logGEML(global_pars[["lod"]]-dpmeanW)),
+		peak.geml.WT_lwr95=quantile(convert_Ct_logGEML(global_pars[["lod"]]-dpmeanW),0.05),
+		peak.geml.WT_upr95=quantile(convert_Ct_logGEML(global_pars[["lod"]]-dpmeanW),0.95),
 		proliferation.time.WT_mean=mean(wpmeanW),
 		proliferation.time.WT_lwr95=quantile(wpmeanW,0.05),
 		proliferation.time.WT_upr95=quantile(wpmeanW,0.95),
@@ -15,6 +18,9 @@ dist_summary <- shared_params_df %>%
 		peak.ct.B117_mean=mean(global_pars[["lod"]]-dpmeanB),
 		peak.ct.B117_lwr95=quantile(global_pars[["lod"]]-dpmeanB,0.05),
 		peak.ct.B117_upr95=quantile(global_pars[["lod"]]-dpmeanB,0.95),
+		peak.geml.B117_mean=mean(convert_Ct_logGEML(global_pars[["lod"]]-dpmeanB)),
+		peak.geml.B117_lwr95=quantile(convert_Ct_logGEML(global_pars[["lod"]]-dpmeanB),0.05),
+		peak.geml.B117_upr95=quantile(convert_Ct_logGEML(global_pars[["lod"]]-dpmeanB),0.95),
 		proliferation.time.B117_mean=mean(wpmeanB),
 		proliferation.time.B117_lwr95=quantile(wpmeanB,0.05),
 		proliferation.time.B117_upr95=quantile(wpmeanB,0.95),
@@ -29,5 +35,4 @@ dist_summary <- shared_params_df %>%
 	separate(name, c("parameter", "statistic"), sep="_") %>%
 	pivot_wider(names_from=statistic, values_from=value) %>%
 	arrange(parameter)
-
 

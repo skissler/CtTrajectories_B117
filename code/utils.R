@@ -133,7 +133,7 @@ plot_ct_fit_b117 <- function(params_df, global_pars, indiv_data, ctalpha=0.01, n
 			theme_minimal() + 
 			theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank(), legend.title=element_blank()) + 
 			labs(x="Time since min Ct (days)", y="Ct") + 
-			scale_y_reverse(sec.axis=sec_axis(~convert_Ct_logGEML(.), name="log(ge/ml)")) + 
+			scale_y_reverse(sec.axis=sec_axis(~convert_Ct_logGEML(.), name="log_10 RNA copies/ml")) + 
 			facet_wrap(~id)
 			})
 }
@@ -156,7 +156,7 @@ plot_ct_fit_b117_fulldata <- function(params_df, global_pars, ct_dat_refined, ct
 			theme_minimal() + 
 			theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank(), legend.title=element_blank()) + 
 			labs(x="Time since min Ct (days)", y="Ct") + 
-			scale_y_reverse(sec.axis=sec_axis(~convert_Ct_logGEML(.), name="log(ge/ml)")) + 
+			scale_y_reverse(sec.axis=sec_axis(~convert_Ct_logGEML(.), name="log_10 RNA copies/ml")) + 
 			facet_wrap(~id)
 			})
 }
@@ -299,7 +299,7 @@ make_sample_trajectory_b117 <- function(shared_params_df, global_pars, siglevel=
 			geom_segment(aes(x=0,xend=wr_mean_B,y=10^convert_Ct_logGEML(lod-dp_mean_B),yend=10^convert_Ct_logGEML(lod)),col="red") + 
 			coord_cartesian(ylim=c(10^convert_Ct_logGEML(40),10^convert_Ct_logGEML(15)), expand=FALSE) + 
 			theme_minimal() + 
-			labs(x="Days from peak", y="Genome equivalents per ml") + 
+			labs(x="Days from peak", y="RNA copies per ml") + 
 			scale_y_continuous(trans='log10', labels = trans_format("log10", math_format(10^.x))) + 
 			theme(text=element_text(size=18))
 	}
@@ -379,7 +379,7 @@ make_sample_trajectory_wtonly <- function(shared_params_df, global_pars, sigleve
 			geom_segment(aes(x=0,xend=wr_mean_W,y=10^convert_Ct_logGEML(lod-dp_mean_W),yend=10^convert_Ct_logGEML(lod)),col="blue") + 
 			coord_cartesian(ylim=c(10^convert_Ct_logGEML(40),10^convert_Ct_logGEML(15)), expand=FALSE) + 
 			theme_minimal() + 
-			labs(x="Days from peak", y="Genome equivalents per ml") + 
+			labs(x="Days from peak", y="RNA copies per ml") + 
 			scale_y_continuous(trans='log10', labels = trans_format("log10", math_format(10^.x))) + 
 			theme(text=element_text(size=18))
 	}

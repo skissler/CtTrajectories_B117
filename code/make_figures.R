@@ -42,7 +42,7 @@ fig_gemlmean <- shared_params_df %>%
 		scale_fill_manual(values=c("dpmeanB"="red","dpmeanW"="blue"), labels=c("dpmeanB"="B.1.1.7", "dpmeanW"="non-B.1.1.7")) + 
 		geom_point(data=meanvalsindiv, aes(x=10^convert_Ct_logGEML(global_pars[["lod"]]-dp), y=jitterfactor*b117*5, col=factor(b117)))  + 
 		# geom_vline(data=meanvalsindiv, aes(xintercept=global_pars[["lod"]]-dp, col=factor(b117)), alpha=0.2)  + 
-		labs(x="Mean peak genome equivalents per ml", y="Density") + 
+		labs(x="Mean peak RNA copies per ml", y="Density") + 
 		theme_minimal() + 
 		# theme(legend.title=element_blank(), text=element_text(size=18)) + 
 		theme(legend.position="none", text=element_text(size=18)) + 
@@ -135,7 +135,7 @@ meanvalsindiv %>%
 		theme_minimal() + 
 		theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank(), legend.title=element_blank(), text=element_text(size=18)) + 
 		labs(x="Time since min Ct (days)", y="Ct") + 
-		scale_y_reverse(sec.axis=sec_axis(~convert_Ct_logGEML(.), name="log(ge/ml)"))
+		scale_y_reverse(sec.axis=sec_axis(~convert_Ct_logGEML(.), name="log10 RNA copies per ml"))
 })
 
 
