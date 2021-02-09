@@ -131,9 +131,9 @@ plot_ct_fit_b117 <- function(params_df, global_pars, indiv_data, ctalpha=0.01, n
 			geom_point(data=indiv_data, aes(x=t, y=y,col=factor(b117)), size=0.5) + 
 			scale_color_manual(values=c("1"="red","0"="blue"), labels=c("1"="B117","0"="non-B117")) + 
 			theme_minimal() + 
-			theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank(), legend.title=element_blank(), axis.text.x=element_text(angle=90, hjust=1, vjust=0.5, size=8)) + 
+			theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank(), legend.title=element_blank(), axis.text.x=element_text(angle=90, hjust=1, vjust=0.5, size=8), axis.text.y=element_text(size=8)) + 
 			labs(x="Time since min Ct (days)", y="Ct") + 
-			scale_y_reverse(sec.axis=sec_axis(~convert_Ct_logGEML(.), name=expression(log[10]~RNA~copies/ml))) + 
+			scale_y_reverse(breaks=c(40,30,20,10), labels=c("(-)","30","20","10"), sec.axis=sec_axis(~convert_Ct_logGEML(.), name=expression(log[10]~RNA~copies/ml))) + 
 			facet_wrap(~id)
 			})
 }
@@ -154,9 +154,9 @@ plot_ct_fit_b117_fulldata <- function(params_df, global_pars, ct_dat_refined, ct
 			geom_point(data=rename(ct_dat_refined,id=PersonID), aes(x=TestDateIndex, y=CtT1,col=factor(B117Status)), size=0.5) + 
 			scale_color_manual(values=c("1"="red","0"="blue","Yes"="red","No"="blue"), labels=c("1"="B117","0"="non-B117","Yes"="B117","No"="non-B117")) + 
 			theme_minimal() + 
-			theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank(), legend.title=element_blank(), axis.text.x=element_text(angle=90, hjust=1, vjust=0.5, size=8)) + 
+			theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank(), legend.title=element_blank(), axis.text.x=element_text(angle=90, hjust=1, vjust=0.5, size=8), axis.text.y=element_text(size=8)) + 
 			labs(x="Time since min Ct (days)", y="Ct") + 
-			scale_y_reverse(sec.axis=sec_axis(~convert_Ct_logGEML(.), name=expression(log[10]~RNA~copies/ml))) + 
+			scale_y_reverse(breaks=c(40,30,20,10), labels=c("(-)","30","20","10"), sec.axis=sec_axis(~convert_Ct_logGEML(.), name=expression(log[10]~RNA~copies/ml))) + 
 			facet_wrap(~id)
 			})
 }
