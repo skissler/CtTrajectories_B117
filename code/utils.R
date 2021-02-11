@@ -389,3 +389,13 @@ make_sample_trajectory_wtonly <- function(shared_params_df, global_pars, sigleve
 	})
 
 }
+
+make_normal_prior_df <- function(mean, sd, pmin, pmax, step){
+	xmin <- qnorm(pmin, mean=mean, sd=sd)
+	xmax <- qnorm(pmax, mean=mean, sd=sd)
+	xvals <- seq(from=xmin, to=xmax, by=step)
+	out <- as_tibble(data.frame(
+		x=xvals, 
+		density=dnorm(xvals, mean=mean, sd=sd)))
+	return(out)
+}

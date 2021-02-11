@@ -29,6 +29,25 @@ fig_dpmean <- shared_params_df %>%
 		y_ticks_off + 
 		grid_off
 
+fig_dpmean_withprior <- shared_params_df %>% 
+	select(dpmeanB, dpmeanW) %>% 
+	pivot_longer(everything()) %>% 
+	ggplot(aes(x=global_pars[["lod"]]-value)) + 
+		# geom_histogram(aes(y=..density.., fill=name), alpha=0.2, position="identity", bins=50) + 
+		geom_density(aes(col=name, fill=name), alpha=0.2, adjust=2) + 
+		scale_x_continuous(limits=c(10,NA)) + 
+		scale_color_manual(values=c("dpmeanB"="red","dpmeanW"="blue","1"="red","0"="blue"), labels=c("dpmeanB"="B.1.1.7", "dpmeanW"="non-B.1.1.7","1"="B.1.1.7","0"="non-B.1.1.7")) + 
+		scale_fill_manual(values=c("dpmeanB"="red","dpmeanW"="blue"), labels=c("dpmeanB"="B.1.1.7", "dpmeanW"="non-B.1.1.7")) + 
+		geom_point(data=meanvalsindiv, aes(x=global_pars[["lod"]]-dp, y=jitterfactor*b117, col=factor(b117)))  + 
+		geom_line(data=make_normal_prior_df(mean=prior_pars$dpmean_prior, sd=prior_pars$dpsd_prior, pmin=0.001, pmax=0.999, step=0.1), aes(x=x, y=density), col="black", linetype="dashed") + 
+		# geom_vline(data=meanvalsindiv, aes(xintercept=global_pars[["lod"]]-dp, col=factor(b117)), alpha=0.2)  + 
+		labs(x="Mean peak Ct", y="Density") + 
+		theme_minimal() + 
+		# theme(legend.title=element_blank(), text=element_text(size=18)) + 
+		theme(legend.position="none", text=element_text(size=18)) + 
+		y_ticks_off + 
+		grid_off
+
 fig_gemlmean <- shared_params_df %>% 
 	select(dpmeanB, dpmeanW) %>% 
 	pivot_longer(everything()) %>% 
@@ -49,6 +68,7 @@ fig_gemlmean <- shared_params_df %>%
 		y_ticks_off + 
 		grid_off
 
+
 fig_wpmean <- shared_params_df %>% 
 	select(wpmeanB, wpmeanW) %>% 
 	pivot_longer(everything()) %>% 
@@ -67,6 +87,26 @@ fig_wpmean <- shared_params_df %>%
 		y_ticks_off + 
 		grid_off
 
+fig_wpmean_withprior <- shared_params_df %>% 
+	select(wpmeanB, wpmeanW) %>% 
+	pivot_longer(everything()) %>% 
+	ggplot(aes(x=value)) + 
+		# geom_histogram(aes(y=..density.., fill=name), alpha=0.2, position="identity", bins=50) + 
+		geom_density(aes(col=name, fill=name), alpha=0.2, adjust=2) + 
+		scale_x_continuous(limits=c(0,NA)) + 
+		# scale_color_manual(values=c("wpmeanB"="red","wpmeanW"="blue"), labels=c("wpmeanB"="B.1.1.7", "wpmeanW"="non-B.1.1.7")) + 
+		scale_color_manual(values=c("wpmeanB"="red","wpmeanW"="blue","1"="red","0"="blue"), labels=c("wpmeanB"="B.1.1.7", "wpmeanW"="non-B.1.1.7","1"="B.1.1.7","0"="non-B.1.1.7")) + 
+		scale_fill_manual(values=c("wpmeanB"="red","wpmeanW"="blue"), labels=c("wpmeanB"="B.1.1.7", "wpmeanW"="non-B.1.1.7")) + 
+		geom_point(data=meanvalsindiv, aes(x=wp, y=jitterfactor*b117, col=factor(b117)))  + 
+		geom_line(data=make_normal_prior_df(mean=prior_pars$wpmean_prior, sd=prior_pars$wpsd_prior, pmin=0.001, pmax=0.999, step=0.1), aes(x=x, y=density), col="black", linetype="dashed") + 
+		labs(x="Mean proliferation stage duration (days)", y="Density") + 
+		theme_minimal() + 
+		# theme(legend.title=element_blank(), text=element_text(size=18)) + 
+		theme(legend.position="none", text=element_text(size=18)) + 
+		y_ticks_off + 
+		grid_off
+
+
 fig_wrmean <- shared_params_df %>% 
 	select(wrmeanB, wrmeanW) %>% 
 	pivot_longer(everything()) %>% 
@@ -78,6 +118,26 @@ fig_wrmean <- shared_params_df %>%
 		scale_color_manual(values=c("wrmeanB"="red","wrmeanW"="blue","1"="red","0"="blue"), labels=c("wrmeanB"="B.1.1.7", "wrmeanW"="non-B.1.1.7","1"="B.1.1.7","0"="non-B.1.1.7")) + 
 		scale_fill_manual(values=c("wrmeanB"="red","wrmeanW"="blue"), labels=c("wrmeanB"="B.1.1.7", "wrmeanW"="non-B.1.1.7")) + 
 		geom_point(data=meanvalsindiv, aes(x=wr, y=jitterfactor*b117, col=factor(b117)))  + 
+		labs(x="Mean clearance stage duration (days)", y="Density") + 
+		theme_minimal() + 
+		# theme(legend.title=element_blank(), text=element_text(size=18)) + 
+		theme(legend.position="none", text=element_text(size=18)) + 
+		y_ticks_off + 
+		grid_off
+
+
+fig_wrmean_withprior <- shared_params_df %>% 
+	select(wrmeanB, wrmeanW) %>% 
+	pivot_longer(everything()) %>% 
+	ggplot(aes(x=value)) + 
+		# geom_histogram(aes(y=..density.., fill=name), alpha=0.2, position="identity", bins=50) + 
+		geom_density(aes(col=name, fill=name), alpha=0.2, adjust=2) + 
+		scale_x_continuous(limits=c(0,NA)) + 
+		# scale_color_manual(values=c("wrmeanB"="red","wrmeanW"="blue"), labels=c("wrmeanB"="B.1.1.7", "wrmeanW"="non-B.1.1.7")) + 
+		scale_color_manual(values=c("wrmeanB"="red","wrmeanW"="blue","1"="red","0"="blue"), labels=c("wrmeanB"="B.1.1.7", "wrmeanW"="non-B.1.1.7","1"="B.1.1.7","0"="non-B.1.1.7")) + 
+		scale_fill_manual(values=c("wrmeanB"="red","wrmeanW"="blue"), labels=c("wrmeanB"="B.1.1.7", "wrmeanW"="non-B.1.1.7")) + 
+		geom_point(data=meanvalsindiv, aes(x=wr, y=jitterfactor*b117, col=factor(b117)))  + 
+		geom_line(data=make_normal_prior_df(mean=prior_pars$wrmean_prior, sd=prior_pars$wrsd_prior, pmin=0.001, pmax=0.999, step=0.1), aes(x=x, y=density), col="black", linetype="dashed") + 
 		labs(x="Mean clearance stage duration (days)", y="Density") + 
 		theme_minimal() + 
 		# theme(legend.title=element_blank(), text=element_text(size=18)) + 
