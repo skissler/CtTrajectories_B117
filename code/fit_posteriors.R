@@ -44,3 +44,5 @@ params_df <- indiv_params_df %>%
 	left_join(shared_params_df, by="iteration") %>% 
 	select(-iteration) 
 
+# write.csv(shared_params_df,file='output/shared_params_df.csv',row.names=FALSE)
+# write.csv(indiv_params_df,file='output/indiv_params_df.csv',row.names=FALSE)
